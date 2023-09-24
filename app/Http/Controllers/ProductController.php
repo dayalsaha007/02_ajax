@@ -28,10 +28,15 @@ class ProductController extends Controller
         return response()->json(['res' => 'Product Inserted Successfully' ]);
     }
 
-    function product_filter(){
+    function product_filter(Request $request){
 
         $products = Product::latest()->get();
         $categories = Category::latest()->get();
+
+        if($request->ajax()){
+            $products = Product::where('c_id', $request->category)->get();
+            return response()->json(['products'=>$products]);
+        }
 
         return view('product.product_filter', compact('products', 'categories'));
     }
