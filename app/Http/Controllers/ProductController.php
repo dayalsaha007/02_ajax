@@ -41,4 +41,24 @@ class ProductController extends Controller
         return view('product.product_filter', compact('products', 'categories'));
     }
 
+
+
+    function parent_pagination(){
+        $products = Product::paginate(5);
+        $categories = Category::latest()->get();
+        return view('pagination.parent_pagination', compact('products', 'categories'));
+    }
+
+    function child_pagination(){
+        return view('pagination.child_pagination');
+    }
+
+    function fetch(Request $request){
+            if($request->ajax()){
+                $products = Product::paginate(5);
+                return view('pagination.child_pagination', compact('products'))->render();
+            }
+    }
+
+
 }

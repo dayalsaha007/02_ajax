@@ -25,7 +25,7 @@ class StudentController extends Controller
 
 
     function all_student(){
-        $students = Student::latest()->get();
+        $students = Student::latest()->paginate(6);
         return view('all_student', [
             'students'=>$students,
         ]);
@@ -64,6 +64,11 @@ class StudentController extends Controller
         $student = Student::findorFail($id);
         $student->delete();
         return response()->json(['res' => 'Student Deleted Successfully!']);
+    }
+
+    function pagination(Request $request){
+        $students = Student::latest()->paginate(6);
+        return view('pagination_students', compact('students'))->render();
     }
 
 

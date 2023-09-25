@@ -19,6 +19,7 @@ Route::controller(StudentController::class)->group(function(){
     Route::get('/edit/student/{id}', 'edit_student')->name('edit_student');
     Route::post('/student/update', 'student_update')->name('student_update');
     Route::get('/delete_student/{id}', 'delete_student');
+    Route::get('/pagination/paginate-data', 'pagination');
 });
 
 Route::controller(SearchController::class)->group(function(){
@@ -34,4 +35,7 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/product', 'product')->name('product');
     Route::post('/product/store', 'product_store')->name('product.store');
     Route::get('/product/filter', 'product_filter')->name('product_filter');
+    Route::get('/parent_pagination', 'parent_pagination')->name('parent_pagination');
+    Route::get('/child_pagination', 'child_pagination')->name('child_pagination');
+    Route::post('/pagination/fetch', 'fetch')->name('pagination_fetch');
 });

@@ -20,7 +20,7 @@
                         <h3>All Student</h3>
                     </div>
                     <div class="card-body">
-
+                        <div class="table-data">
                             <table class="table table-bordered table-striped">
                                 <div class="t-head">
                                     <tr>
@@ -55,9 +55,9 @@
                                             @endforeach
                                         </div>
                                     </div>
-
                             </table>
-
+                            {!! $students->links() !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,6 +100,26 @@
 
             });
         });
+    </script>
+
+    <script>
+
+            $(document).on('click', '.pagination a', function(){
+                e.preventDefault();
+
+                let page = $(this).attr('href').split('page=')[1];
+                student(page);
+            });
+
+            function student(page){
+                $.ajax({
+                    url:"pagination/paginate-data?page"+page,
+                    success:function(res){
+                        $('.table-data').html(res);
+                    }
+                });
+            }
+
     </script>
 
 
