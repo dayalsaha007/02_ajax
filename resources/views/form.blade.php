@@ -9,6 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -24,7 +30,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                <input type="text" name="in_name" class="form-control" required id="name" aria-describedby="emailHelp">
+                                <input type="text" name="in_name" class="form-control"  id="name" aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">
                                 <label  class="form-label">Email</label>
@@ -54,6 +60,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" ></script>
 
 
 <script>
@@ -61,6 +68,21 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+    </script>
+
+<script>
+   $(document).ready(function () {
+        $('#my_form').validate({
+            rules: {
+                in_name: "required",
+                in_email: {
+                    required: true,
+                    email: true
+                }
+            }
+
+          });
         });
     </script>
 

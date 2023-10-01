@@ -42,7 +42,6 @@ class ProductController extends Controller
     }
 
 
-
     function parent_pagination(){
         $products = Product::paginate(5);
         $categories = Category::latest()->get();
